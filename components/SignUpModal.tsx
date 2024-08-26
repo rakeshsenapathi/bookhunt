@@ -2,7 +2,7 @@
 
 import { Socials } from '@/types';
 import { Button, Group, Stack, Text } from '@mantine/core';
-import { IconBrandGoogleFilled } from '@tabler/icons-react';
+import { IconBrandGoogleFilled, IconMail } from '@tabler/icons-react';
 interface SignUpModalProps {}
 
 export const SignUpModal: React.FC<SignUpModalProps> = () => {
@@ -30,6 +30,17 @@ export const SignUpModal: React.FC<SignUpModalProps> = () => {
                 <Group>
                     <IconBrandGoogleFilled />
                     Login with Google
+                </Group>
+            </Button>
+            <Text>----- OR -----</Text>
+            <Button
+                variant="outline"
+                color="green"
+                onClick={() => handleSocialSignIn('google')}
+            >
+                <Group>
+                    <IconMail />
+                    Login with email
                 </Group>
             </Button>
         </Stack>

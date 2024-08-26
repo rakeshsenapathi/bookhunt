@@ -36,6 +36,10 @@ export default function Home() {
                             Book Hunt
                         </Text>
                     </Group>
+                    <Group hiddenFrom="sm">
+                        <Text>Launches</Text>
+                        <Text>News</Text>
+                    </Group>
                     <Group>
                         <ModeToggle />
                         {/* Sign up or Login flow */}
