@@ -3,12 +3,17 @@
 import { Socials } from '@/types';
 import { Button, Group, Stack, Text } from '@mantine/core';
 import { IconBrandGoogleFilled, IconMail } from '@tabler/icons-react';
+import { signIn } from 'next-auth/react';
+
 interface SignUpModalProps {}
 
 export const SignUpModal: React.FC<SignUpModalProps> = () => {
     const handleSocialSignIn = (type: Socials) => {
         switch (type) {
             case 'google':
+                signIn('google');
+                break;
+            case 'email':
                 break;
             default:
                 return;
@@ -36,7 +41,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = () => {
             <Button
                 variant="outline"
                 color="green"
-                onClick={() => handleSocialSignIn('google')}
+                onClick={() => handleSocialSignIn('email')}
             >
                 <Group>
                     <IconMail />

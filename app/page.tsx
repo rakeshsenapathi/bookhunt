@@ -1,24 +1,26 @@
 'use client';
+import { Dashboard } from '@/components/Dashboard';
 import { ModeToggle } from '@/components/ModeToggle';
+import { Profile } from '@/components/Profile';
 import { SignUpModal } from '@/components/SignUpModal';
-import { AppShell, Text, Group, Button, Burger, Modal } from '@mantine/core';
+import {
+    AppShell,
+    Text,
+    Group,
+    Button,
+    Burger,
+    Modal,
+    Loader,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
     const [opened, { toggle, open, close }] = useDisclosure();
-    const [signedIn, setSignedIn] = useState<boolean>();
+    const { data: session, status } = useSession();
 
     return (
-        <AppShell
-            header={{ height: 60 }}
-            navbar={{
-                width: 300,
-                breakpoint: 'sm',
-                collapsed: { mobile: !opened },
-            }}
-            padding="md"
-        >
+        <AppShell header={{ height: 60 }} padding="md">
             <Modal opened={opened} onClose={close} centered>
                 <SignUpModal />
             </Modal>
@@ -36,21 +38,26 @@ export default function Home() {
                             Book Hunt
                         </Text>
                     </Group>
-                    <Group hiddenFrom="sm">
+                    <Group>
                         <Text>Launches</Text>
                         <Text>News</Text>
                     </Group>
                     <Group>
                         <ModeToggle />
                         {/* Sign up or Login flow */}
-                        {!signedIn && (
+                        {!session && status === 'loading' && <Loader />}
+                        {!session && status === 'unauthenticated' && (
                             <Button onClick={open} size="md">
                                 Sign in
                             </Button>
                         )}
+                        {session && <Profile session={session} />}
                     </Group>
                 </Group>
             </AppShell.Header>
+            <AppShell.Main>
+                <Dashboard />
+            </AppShell.Main>
         </AppShell>
     );
 }
