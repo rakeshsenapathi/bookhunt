@@ -1,14 +1,15 @@
 'use client';
 
-import { Divider, Title } from '@mantine/core';
+import { Divider, Group, Stack, Title } from '@mantine/core';
+import { m as motion } from 'framer-motion';
 
 interface DashboardProps {}
 
 export const Dashboard: React.FC<DashboardProps> = () => {
     return (
-        <div>
-            <Title order={3}>Top Books Launching Today</Title>
-            <Divider my={'md'} />
-        </div>
+        <Stack>
+            <Title order={3}>Featuring Top Stories for today</Title>
+            <Divider />
+        </Stack>
     );
 };
