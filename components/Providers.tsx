@@ -1,20 +1,21 @@
 'use client';
-import { MantineProvider, createTheme } from '@mantine/core';
 import { SessionProvider } from 'next-auth/react';
 import { FC, ReactNode } from 'react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { type ThemeProviderProps } from 'next-themes/dist/types';
 
 interface Props {
     children: ReactNode;
 }
 
-const theme = createTheme({
-    black: 'black',
-});
+const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
+    return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+};
 
 const Providers: FC<Props> = ({ children }: Props) => (
-    <MantineProvider theme={theme}>
+    <ThemeProvider enableSystem={false} disableTransitionOnChange>
         <SessionProvider>{children}</SessionProvider>
-    </MantineProvider>
+    </ThemeProvider>
 );
 
 export default Providers;

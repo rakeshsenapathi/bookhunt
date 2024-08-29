@@ -53,7 +53,8 @@ export const SignUpModal: React.FC<SignUpModalProps> = () => {
             </Stack>
 
             <Text size="xs">
-                we'll never post to any of your accounts without your permission
+                we wll never post to any of your accounts without your
+                permission
             </Text>
         </Stack>
     );
