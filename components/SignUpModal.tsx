@@ -1,15 +1,13 @@
-'use client';
-
-import { Socials } from '@/types';
-import { Button, Group, Stack, Text, Title } from '@mantine/core';
 import {
-    IconBrandAppleFilled,
-    IconBrandFacebookFilled,
-    IconBrandGoogleFilled,
-    IconBrandLinkedin,
-    IconBrandTwitterFilled,
-} from '@tabler/icons-react';
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTrigger,
+} from '@/components/ui/dialog';
+import { Button } from './ui/button';
+import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
+import { Socials } from '@/types';
 
 interface SignUpModalProps {}
 
@@ -26,35 +24,30 @@ export const SignUpModal: React.FC<SignUpModalProps> = () => {
         }
     };
     return (
-        <Stack align="stretch" p={'md'} ta={'center'}>
-            <Text size="lg" fw={700}>
-                Sign up for Book Hunt
-            </Text>
-            <Text size="md">
-                Join our community of passionate writers who want to collaborate
-                and discover great writing
-            </Text>
-            <Stack>
-                <Button
-                    variant="filled"
-                    onClick={() => handleSocialSignIn('google')}
-                >
-                    <Group>
-                        <IconBrandGoogleFilled />
-                        Sign in with Google
-                    </Group>
-                </Button>
-                <Group justify="space-between">
-                    <IconBrandTwitterFilled />
-                    <IconBrandFacebookFilled />
-                    <IconBrandAppleFilled />
-                    <IconBrandLinkedin />
-                </Group>
-            </Stack>
-
-            <Text size="xs">
-                we'll never post to any of your accounts without your permission
-            </Text>
-        </Stack>
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button>Sign Up</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader className="flex flex-col justify-center items-center">
+                    <h1 className="text-2xl font-bold">
+                        Sign Up for Book Hunt
+                    </h1>
+                    <h3 className="text-center">
+                        Join our community of passionate writers who want to
+                        collaborate and discover great writing
+                    </h3>
+                    <div className="pt-5 w-[300px] flex flex-col">
+                        <Button
+                            variant={'outline'}
+                            onClick={() => handleSocialSignIn('google')}
+                        >
+                            <FcGoogle size={20} />
+                            <h1 className="ml-3">Login with Google</h1>
+                        </Button>
+                    </div>
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
     );
 };

@@ -8,8 +8,8 @@ export default function Profile({
     console.log('params', params);
     return (
         <div>
-            Test
-            <h1>{params && params?.profileName}</h1>
+            <h1 className="text-xl text-violet-700">Test</h1>
+            <h1 className="text-xl">{params && params?.profileName}</h1>
         </div>
     );
 }
