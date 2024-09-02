@@ -13,15 +13,11 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuPortal,
     DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-import { User, CreditCard, Settings, LogOut } from 'lucide-react';
+import { User, Settings, LogOut, Menu } from 'lucide-react';
+import { Transition } from './Transition';
 
 interface NavbarProps {}
 
@@ -33,10 +29,16 @@ export const Navbar: React.FC<NavbarProps> = () => {
         router.push('/posts/new');
     };
 
+    console.log('image', session?.user?.image);
+
     return (
-        <div className="flex flex-row justify-between items-center px-8 py-3 border-b-[1px] border-b-slate-300">
-            <Logo />
-            <ul className="flex gap-4 cursor-pointer">
+        <div className="flex flex-row justify-between items-center px-5 sm:px-4 py-3 border-b-[1px] border-b-slate-300">
+            <div className="flex justify-center items-center gap-3">
+                <Menu className="sm:hidden" />
+                <Logo />
+            </div>
+
+            <ul className="md:flex gap-4 cursor-pointer hidden">
                 <li>Launches</li>
                 <li>News</li>
             </ul>
