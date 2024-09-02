@@ -4,7 +4,6 @@ import Providers from '@/components/Providers';
 import { Container } from '@/components/Container';
 import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import { Transition } from '@/components/Transition';
 const fontSans = FontSans({
     subsets: ['latin'],
     variable: '--font-sans',

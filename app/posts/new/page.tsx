@@ -11,10 +11,10 @@ export default function PostPage() {
                 <div className="bg-slate-300 hidden md:block"></div>
                 <Transition>
                     <div className="p-5 flex flex-col">
-                        <div className="text-2xl font-bold">
+                        <div className="text-2xl font-bold tracking-tighter leading-tight">
                             Submit a writing!
                         </div>
-                        <div className="text-base text-gray-600">
+                        <div className="lmax-w-2xl text-balance text-lg font-light text-foreground">
                             Ready to launch your writing into the world but have
                             some lingering questions? Whether you’re unsure
                             about the submission process, wondering about our

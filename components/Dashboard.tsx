@@ -10,7 +10,7 @@ export const Dashboard: React.FC<DashboardProps> = () => {
     return (
         <Transition>
             <div className="px-5 sm:px-6 py-4">
-                <h1 className="text-xl font-bold md:text-3xl">
+                <h1 className="text-xl font-bold md:text-3xl leading-tight tracking-tighter">
                     Featuring Top Stories for today
                 </h1>
                 <Separator className="mt-4" />

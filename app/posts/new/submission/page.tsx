@@ -18,7 +18,7 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Button } from '@/components/ui/button';
+import { PlateEditor } from '@/components/ui/PlateEditor';
 
 export default function SubmissionPage() {
     const [currentTab, setCurrentTab] = useState<number>(1);
@@ -26,7 +26,7 @@ export default function SubmissionPage() {
     const navigationContent = [
         {
             index: 1,
-            label: 'Basic details',
+            label: 'Basic Details',
         },
         {
             index: 2,
@@ -57,12 +57,12 @@ export default function SubmissionPage() {
 
     const SubmissionNavigation = () => {
         return (
-            <nav className="flex flex-col grow-0 w-1/5">
+            <nav className="flex-col grow-0 w-1/5 hidden sm:visible sm:flex">
                 {navigationContent.map((obj, index) => (
                     <div
                         key={obj.index}
                         className={cn(
-                            'p-3 rounded-sm text-sm font-semibold cursor-pointer transition-colors duration-500',
+                            'inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 px-4 py-2 justify-start',
                             currentTab === obj.index ? 'bg-secondary' : ''
                         )}
                         onClick={() => setCurrentTab(obj.index)}
@@ -148,6 +148,7 @@ export default function SubmissionPage() {
                     mainText="Main Rich Text Editor"
                     subText="orchestrate your book"
                 />
+                <PlateEditor />
             </div>
         );
     };
@@ -155,15 +156,17 @@ export default function SubmissionPage() {
     return (
         <Transition className="flex flex-grow min-w-screen px-0 sm:px-8 -translate-y-10">
             <Card className="mx-5 mt-5 w-full shadow-xl">
-                <CardHeader className="text-xl font-bold">Submit</CardHeader>
+                <CardHeader className="text-2xl font-bold tracking-tight">
+                    Submit
+                </CardHeader>
                 <Separator />
                 <CardContent>
                     <div className="flex flex-row gap-3 py-3">
                         <SubmissionNavigation />
-                        <div>
+                        <div className="hidden sm:visible sm:flex">
                             <Separator orientation="vertical" />
                         </div>
-                        <div className="p-3 w-full">
+                        <div className="p-0 sm:p-3 w-full">
                             {currentTab === 1 && <BasicDetailsContainer />}
                             {currentTab === 2 && <EditorContainer />}
                         </div>

@@ -20,8 +20,10 @@ export default function Profile({
             <Transition className="w-full">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Profile Information</CardTitle>
-                        <CardDescription>
+                        <CardTitle className="leading-tight tracking-tighter">
+                            Profile Information
+                        </CardTitle>
+                        <CardDescription className="text-sm font-medium">
                             Fill out details about profile, add socials links
                             for more visibility
                         </CardDescription>
