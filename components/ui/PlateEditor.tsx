@@ -65,7 +65,6 @@ import { ImageElement } from '@/components/plate-ui/image-element';
 import { LinkElement } from '@/components/plate-ui/link-element';
 import { LinkFloatingToolbar } from '@/components/plate-ui/link-floating-toolbar';
 import { ToggleElement } from '@/components/plate-ui/toggle-element';
-import { ColumnGroupElement } from '@/components/plate-ui/column-group-element';
 import { ColumnElement } from '@/components/plate-ui/column-element';
 import { HeadingElement } from '@/components/plate-ui/heading-element';
 import { MentionElement } from '@/components/plate-ui/mention-element';
@@ -211,7 +210,6 @@ const editor = createPlateEditor({
                 [ImagePlugin.key]: ImageElement,
                 [LinkPlugin.key]: LinkElement,
                 [TogglePlugin.key]: ToggleElement,
-                [ColumnPlugin.key]: ColumnGroupElement,
                 [ColumnItemPlugin.key]: ColumnElement,
                 [HEADING_KEYS.h1]: withProps(HeadingElement, { variant: 'h1' }),
                 [HEADING_KEYS.h2]: withProps(HeadingElement, { variant: 'h2' }),
