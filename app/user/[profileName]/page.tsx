@@ -9,6 +9,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 export default function Profile({
     params,
@@ -16,30 +17,29 @@ export default function Profile({
     params: { profileName: string };
 }) {
     return (
-        <div className="flex flex-grow px-5 sm:px-48 pt-16 flex-col gap-2 items-center min-w-full bg-slate-100">
-            <Transition className="w-full">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="leading-tight tracking-tighter">
-                            Profile Information
-                        </CardTitle>
-                        <CardDescription className="text-sm font-medium">
-                            Fill out details about profile, add socials links
-                            for more visibility
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <h1 className="uppercase text-gray-500 text-sm -leading-3 font-bold">
-                            Profile Picture
-                        </h1>
-                    </CardContent>
-                    <CardContent>
-                        <h1 className="uppercase text-gray-500 text-sm -leading-3 font-bold">
-                            Full Name
-                        </h1>
-                    </CardContent>
-                </Card>
-            </Transition>
-        </div>
+        <Transition className="flex flex-grow min-w-screen px-0 sm:px-5 -translate-y-10">
+            <Card className="mx-5 mt-5 w-full shadow-xl">
+                <CardHeader>
+                    <CardTitle className="leading-tight tracking-tighter">
+                        Profile Information
+                    </CardTitle>
+                    <CardDescription className="text-sm font-medium">
+                        Fill out details about profile, add socials links for
+                        more visibility
+                    </CardDescription>
+                </CardHeader>
+                <Separator />
+                <CardContent>
+                    <h1 className="uppercase text-gray-500 text-sm -leading-3 font-bold">
+                        Profile Picture
+                    </h1>
+                </CardContent>
+                <CardContent>
+                    <h1 className="uppercase text-gray-500 text-sm -leading-3 font-bold">
+                        Full Name
+                    </h1>
+                </CardContent>
+            </Card>
+        </Transition>
     );
 }

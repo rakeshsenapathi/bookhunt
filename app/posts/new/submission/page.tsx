@@ -57,7 +57,7 @@ export default function SubmissionPage() {
 
     const SubmissionNavigation = () => {
         return (
-            <nav className="flex-col grow-0 w-1/5 hidden sm:visible sm:flex">
+            <nav className="flex-col grow-0 w-1/5 hidden sm:visible sm:flex cursor-pointer">
                 {navigationContent.map((obj, index) => (
                     <div
                         key={obj.index}
@@ -154,7 +154,7 @@ export default function SubmissionPage() {
     };
 
     return (
-        <Transition className="flex flex-grow min-w-screen px-0 sm:px-8 -translate-y-10">
+        <Transition className="flex flex-grow min-w-screen px-0 sm:px-5 -translate-y-10">
             <Card className="mx-5 mt-5 w-full shadow-xl">
                 <CardHeader className="text-2xl font-bold tracking-tight">
                     Submit
