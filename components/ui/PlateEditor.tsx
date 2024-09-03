@@ -78,7 +78,6 @@ import {
     TableCellHeaderElement,
 } from '@/components/plate-ui/table-cell-element';
 import { TodoListElement } from '@/components/plate-ui/todo-list-element';
-import { DateElement } from '@/components/plate-ui/date-element';
 import { CodeLeaf } from '@/components/plate-ui/code-leaf';
 import { CommentLeaf } from '@/components/plate-ui/comment-leaf';
 import { CommentsPopover } from '@/components/plate-ui/comments-popover';
@@ -228,7 +227,6 @@ const editor = createPlateEditor({
                 [TableCellPlugin.key]: TableCellElement,
                 [TableCellHeaderPlugin.key]: TableCellHeaderElement,
                 [TodoListPlugin.key]: TodoListElement,
-                [DatePlugin.key]: DateElement,
                 [BoldPlugin.key]: withProps(PlateLeaf, { as: 'strong' }),
                 [CodePlugin.key]: CodeLeaf,
                 [CommentsPlugin.key]: CommentLeaf,
