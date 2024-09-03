@@ -1,5 +1,6 @@
 'use client';
 
+import { Separator } from '@radix-ui/react-dropdown-menu';
 import { Navbar } from './Navbar';
 
 interface ContainerProps {

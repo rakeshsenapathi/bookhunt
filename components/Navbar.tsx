@@ -13,15 +13,11 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuPortal,
     DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-import { User, CreditCard, Settings, LogOut } from 'lucide-react';
+import { User, Settings, LogOut, Menu } from 'lucide-react';
+import { Separator } from './ui/separator';
 
 interface NavbarProps {}
 
@@ -33,65 +29,86 @@ export const Navbar: React.FC<NavbarProps> = () => {
         router.push('/posts/new');
     };
 
+    console.log('image', session?.user?.image);
+
     return (
-        <div className="flex flex-row justify-between items-center px-8 py-3 border-b-[1px] border-b-slate-300">
-            <Logo />
-            <ul className="flex gap-4 cursor-pointer">
-                <li>Launches</li>
-                <li>News</li>
-            </ul>
-            <div className="flex justify-center items-center gap-7">
-                {session && (
-                    <Button onClick={handleSubmit} variant={'outline'}>
-                        Submit
-                    </Button>
-                )}
-                {!session && status === 'loading' && (
-                    <Skeleton className="w-10 h-10 rounded-full" />
-                )}
-                {!session && status === 'unauthenticated' && <SignUpModal />}
-                {session && (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Avatar>
-                                <AvatarImage
-                                    src={session?.user?.image!}
-                                    alt="user"
-                                />
-                                <AvatarFallback>User</AvatarFallback>
-                            </Avatar>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-56 -translate-x-6">
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem
-                                    onClick={() =>
-                                        router.push(
-                                            `/user/${session.user?.name}`
-                                        )
-                                    }
-                                >
-                                    <User className="mr-2 h-4 w-4" />
-                                    <span>Profile</span>
-                                    {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
+        <div className="flex flex-col gap-0">
+            <div className="flex flex-row justify-between items-center px-5 sm:px-4 py-3">
+                <div className="flex justify-center items-center gap-3">
+                    <Menu className="sm:hidden" />
+                    <Logo />
+                </div>
+
+                <ul className="md:flex gap-4 cursor-pointer hidden">
+                    <li>Launches</li>
+                    <li>News</li>
+                </ul>
+                <div className="flex justify-center items-center gap-7">
+                    {session && (
+                        <Button
+                            onClick={handleSubmit}
+                            variant={'outline'}
+                            className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3 bg-primary text-primary-foreground hover:bg-primary/90"
+                        >
+                            Submit
+                        </Button>
+                    )}
+                    {!session && status === 'loading' && (
+                        <Skeleton className="w-10 h-10 rounded-full" />
+                    )}
+                    {!session && status === 'unauthenticated' && (
+                        <SignUpModal />
+                    )}
+                    {session && (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Avatar>
+                                    <AvatarImage
+                                        src={session?.user?.image!}
+                                        alt="user"
+                                    />
+                                    <AvatarFallback>User</AvatarFallback>
+                                </Avatar>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56 -translate-x-6">
+                                <DropdownMenuLabel className="text-sm font-medium">
+                                    My Account
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem
+                                        onClick={() =>
+                                            router.push(
+                                                `/user/${session.user?.name}`
+                                            )
+                                        }
+                                    >
+                                        <User className="mr-2 h-4 w-4" />
+                                        <span className="text-sm font-medium">
+                                            Profile
+                                        </span>
+                                        {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Settings className="mr-2 h-4 w-4" />
+                                        <span className="font-medium text-sm">
+                                            Settings
+                                        </span>
+                                        {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
+                                    </DropdownMenuItem>
+                                </DropdownMenuGroup>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem onClick={() => signOut()}>
+                                    <LogOut className="mr-2 h-4 w-4" />
+                                    <span>Log out</span>
+                                    {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Settings className="mr-2 h-4 w-4" />
-                                    <span>Settings</span>
-                                    {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
-                                </DropdownMenuItem>
-                            </DropdownMenuGroup>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => signOut()}>
-                                <LogOut className="mr-2 h-4 w-4" />
-                                <span>Log out</span>
-                                {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                )}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
+                </div>
             </div>
+            <Separator />
         </div>
     );
 };
