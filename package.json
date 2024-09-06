@@ -6,7 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "precommit": "next build && next lint"
     },
     "dependencies": {
         "@ariakit/react": "^0.4.11",
@@ -65,7 +66,6 @@
         "cmdk": "^1.0.0",
         "date-fns": "^3.6.0",
         "framer-motion": "^11.3.30",
-        "husky": "^9.1.5",
         "lucide-react": "^0.436.0",
         "next": "14.2.6",
         "next-auth": "^4.24.7",
@@ -97,11 +97,17 @@
         "dotenv": "^16.4.5",
         "eslint": "^8",
         "eslint-config-next": "14.2.6",
+        "husky": "^9.1.5",
         "postcss": "^8.4.41",
         "postcss-preset-mantine": "^1.17.0",
         "postcss-simple-vars": "^7.0.1",
         "prisma": "^5.18.0",
         "tailwindcss": "^3.4.10",
         "typescript": "^5"
+    },
+    "husky": {
+        "hooks": {
+            "precommit": "npm run precommit"
+        }
     }
 }
