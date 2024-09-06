@@ -10,7 +10,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-    title: 'Writers Hunt',
+    title: 'Story Trail',
     description: 'Share short stories, summaries and get featured',
 };
 
