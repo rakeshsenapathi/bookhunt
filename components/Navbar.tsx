@@ -18,6 +18,7 @@ import {
 } from './ui/dropdown-menu';
 import { User, Settings, LogOut, Menu } from 'lucide-react';
 import { Separator } from './ui/separator';
+console.log('test');
 
 interface NavbarProps {}
 
