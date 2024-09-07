@@ -44,11 +44,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                 </ul>
                 <div className="flex justify-center items-center gap-7">
                     {session && (
-                        <Button
-                            onClick={handleSubmit}
-                            variant={'outline'}
-                            className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3 bg-primary text-primary-foreground hover:bg-primary/90"
-                        >
+                        <Button onClick={handleSubmit} variant={'default'}>
                             Submit
                         </Button>
                     )}
@@ -88,7 +84,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
                                         </span>
                                         {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        onClick={() => router.push('/settings')}
+                                    >
                                         <Settings className="mr-2 h-4 w-4" />
                                         <span className="font-medium text-sm">
                                             Settings

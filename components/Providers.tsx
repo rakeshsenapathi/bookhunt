@@ -16,7 +16,12 @@ const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
 };
 
 const Providers: FC<Props> = ({ children }: Props) => (
-    <ThemeProvider enableSystem={false} disableTransitionOnChange>
+    <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+    >
         <TooltipProvider>
             <DndProvider backend={HTML5Backend}>
                 <SessionProvider>{children}</SessionProvider>
