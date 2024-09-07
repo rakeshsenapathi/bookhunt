@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Providers from '@/components/Providers';
-import { Container } from '@/components/Container';
+import { RootLayoutContainer } from '@/components/layouts/RootLayoutContainer';
 import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 const fontSans = FontSans({
@@ -10,7 +10,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-    title: 'Writers Hunt',
+    title: 'Story Trail',
     description: 'Share short stories, summaries and get featured',
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
                 )}
             >
                 <Providers>
-                    <Container>{children}</Container>
+                    <RootLayoutContainer>{children}</RootLayoutContainer>
                 </Providers>
             </body>
         </html>
