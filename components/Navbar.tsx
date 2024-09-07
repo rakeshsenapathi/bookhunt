@@ -18,7 +18,7 @@ import {
 } from './ui/dropdown-menu';
 import { User, Settings, LogOut, Menu } from 'lucide-react';
 import { Separator } from './ui/separator';
-console.log('test');
+import { useEffect } from 'react';
 
 interface NavbarProps {}
 
@@ -29,8 +29,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
     const handleSubmit = () => {
         router.push('/posts/new');
     };
-
-    console.log('image', session?.user?.image);
 
     return (
         <div className="flex flex-col gap-0">

@@ -1,7 +1,6 @@
 'use client';
 
-import { Transition } from '@/components/Transition';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { CardContent, CardHeader } from '@/components/ui/card';
 import {
     Form,
     FormControl,
@@ -18,7 +17,16 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { PlateEditor } from '@/components/ui/PlateEditor';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+import { CardLayout } from '@/components/layouts/CardLayout';
+
+const PlateEditor = dynamic(
+    () => import('@/components/ui/PlateEditor').then((mod) => mod.PlateEditor),
+    {
+        suspense: true,
+    }
+);
 
 export default function SubmissionPage() {
     const [currentTab, setCurrentTab] = useState<number>(1);
@@ -154,25 +162,27 @@ export default function SubmissionPage() {
     };
 
     return (
-        <Transition className="flex flex-grow min-w-screen px-0 sm:px-5 -translate-y-10">
-            <Card className="mx-5 mt-5 w-full shadow-xl">
-                <CardHeader className="text-2xl font-bold tracking-tight">
-                    Submit
-                </CardHeader>
-                <Separator />
-                <CardContent>
-                    <div className="flex flex-row gap-3 py-3">
-                        <SubmissionNavigation />
-                        <div className="hidden sm:visible sm:flex">
-                            <Separator orientation="vertical" />
-                        </div>
-                        <div className="p-0 sm:p-3 w-full">
-                            {currentTab === 1 && <BasicDetailsContainer />}
-                            {currentTab === 2 && <EditorContainer />}
-                        </div>
+        <CardLayout>
+            <CardHeader className="text-2xl font-bold tracking-tight">
+                Submit
+            </CardHeader>
+            <Separator />
+            <CardContent>
+                <div className="flex flex-row gap-3 py-3">
+                    <SubmissionNavigation />
+                    <div className="hidden sm:visible sm:flex">
+                        <Separator orientation="vertical" />
                     </div>
-                </CardContent>
-            </Card>
-        </Transition>
+                    <div className="p-0 sm:p-3 w-full">
+                        {currentTab === 1 && <BasicDetailsContainer />}
+                        {currentTab === 2 && (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <EditorContainer />
+                            </Suspense>
+                        )}
+                    </div>
+                </div>
+            </CardContent>
+        </CardLayout>
     );
 }

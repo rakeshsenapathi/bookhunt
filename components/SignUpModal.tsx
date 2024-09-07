@@ -1,3 +1,5 @@
+'use client';
+
 import {
     Dialog,
     DialogContent,
@@ -6,16 +8,20 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from './ui/button';
 import { FcGoogle } from 'react-icons/fc';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { Socials } from '@/types';
 
 interface SignUpModalProps {}
 
 export const SignUpModal: React.FC<SignUpModalProps> = () => {
-    const handleSocialSignIn = (type: Socials) => {
+    const session = useSession();
+    console.log('signup modal session', session);
+    const handleSocialSignIn = async (type: Socials) => {
         switch (type) {
             case 'google':
-                signIn('google');
+                signIn('google', {
+                    callbackUrl: '/user/redirect',
+                });
                 break;
             case 'email':
                 break;
