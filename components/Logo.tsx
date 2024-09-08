@@ -10,10 +10,10 @@ export const Logo: React.FC<LogoProps> = () => {
 
     return (
         <Image
-            src={'/logo.png'}
+            src={'/logo.svg'}
             alt="logo"
-            width={40}
-            height={40}
+            width={120}
+            height={120}
             onClick={() => router.push('/')}
             className="cursor-pointer"
         />

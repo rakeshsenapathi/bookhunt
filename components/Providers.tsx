@@ -3,10 +3,6 @@ import { SessionProvider } from 'next-auth/react';
 import { FC, ReactNode } from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { type ThemeProviderProps } from 'next-themes/dist/types';
-import { TooltipProvider } from '@/components/plate-ui/tooltip';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-
 interface Props {
     children: ReactNode;
 }
@@ -22,11 +18,7 @@ const Providers: FC<Props> = ({ children }: Props) => (
         enableSystem
         disableTransitionOnChange
     >
-        <TooltipProvider>
-            <DndProvider backend={HTML5Backend}>
-                <SessionProvider>{children}</SessionProvider>
-            </DndProvider>
-        </TooltipProvider>
+        <SessionProvider>{children}</SessionProvider>
     </ThemeProvider>
 );
 
