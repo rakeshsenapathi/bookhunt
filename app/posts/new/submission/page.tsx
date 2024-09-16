@@ -18,6 +18,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { CardLayout } from '@/components/layouts/CardLayout';
 import Editor from '@/components/Editor';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, ArrowRightFromLine } from 'lucide-react';
 
 export default function SubmissionPage() {
     const [currentTab, setCurrentTab] = useState<number>(1);
@@ -135,6 +137,13 @@ export default function SubmissionPage() {
                             />
                         </form>
                     </Form>
+                    <Button
+                        onClick={() => setCurrentTab(2)}
+                        className="mt-4 flex justify-center items-center hover:scale-105"
+                    >
+                        Next Step
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
                 </div>
             </>
         );
