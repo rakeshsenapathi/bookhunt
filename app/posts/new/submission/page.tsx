@@ -4,7 +4,6 @@ import { CardContent, CardHeader } from '@/components/ui/card';
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -17,16 +16,10 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 import { CardLayout } from '@/components/layouts/CardLayout';
-
-const PlateEditor = dynamic(
-    () => import('@/components/ui/PlateEditor').then((mod) => mod.PlateEditor),
-    {
-        suspense: true,
-    }
-);
+import Editor from '@/components/Editor';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, ArrowRightFromLine } from 'lucide-react';
 
 export default function SubmissionPage() {
     const [currentTab, setCurrentTab] = useState<number>(1);
@@ -144,6 +137,13 @@ export default function SubmissionPage() {
                             />
                         </form>
                     </Form>
+                    <Button
+                        onClick={() => setCurrentTab(2)}
+                        className="mt-4 flex justify-center items-center hover:scale-105"
+                    >
+                        Next Step
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
                 </div>
             </>
         );
@@ -156,7 +156,7 @@ export default function SubmissionPage() {
                     mainText="Main Rich Text Editor"
                     subText="orchestrate your book"
                 />
-                <PlateEditor />
+                <Editor />
             </div>
         );
     };
@@ -175,11 +175,7 @@ export default function SubmissionPage() {
                     </div>
                     <div className="p-0 sm:p-3 w-full">
                         {currentTab === 1 && <BasicDetailsContainer />}
-                        {currentTab === 2 && (
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <EditorContainer />
-                            </Suspense>
-                        )}
+                        {currentTab === 2 && <EditorContainer />}
                     </div>
                 </div>
             </CardContent>
